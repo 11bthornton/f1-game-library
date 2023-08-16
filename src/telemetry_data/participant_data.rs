@@ -345,9 +345,10 @@ pub struct PacketParticipantData {
 impl ParticipantData {
     #[allow(dead_code)]
     pub fn name(&self) -> String {
-        let name = str::from_utf8(&self.name).unwrap();
+        let name = str::from_utf8(&self.name).unwrap().to_string();
+        let res = name.trim_matches(char::from(0));
 
-        name.to_string()
+        res.to_string()
     }
 
     pub fn team_colour(&self) -> (u8, u8, u8) {
