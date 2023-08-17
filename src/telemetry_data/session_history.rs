@@ -34,7 +34,7 @@ pub struct HistoryData {
     pub data: [LapHistoryData; 100],
 }
 
-#[derive(Deserialize, Debug, Serialize, Clone, Copy)]
+#[derive(Deserialize, Debug, Serialize, Clone, Copy, Default)]
 pub struct LapHistoryData {
     pub lap_time_in_ms: u32,
     pub sector_1_time_in_ms: u16,
