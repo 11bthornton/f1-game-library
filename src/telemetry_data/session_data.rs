@@ -39,18 +39,28 @@ pub struct WeatherForecastSample {
 pub enum SessionType {
     #[default]
     Unknown,
+    #[serde(rename = "Practice One")]
     PracticeOne,
+    #[serde(rename = "Practice Two")]
     PracticeTwo,
+    #[serde(rename = "Practice Three")]
     PracticeThree,
+    #[serde(rename = "Short Practice")]
     ShortPractice,
+    #[serde(rename = "Qualifying One")]
     QualifyingOne,
+    #[serde(rename = "Qualifying Two")]
     QualifyingTwo,
+    #[serde(rename = "Qualifying Three")]
     QualifyingThree,
+    #[serde(rename = "Short Qualifying")]
     ShortQualifying,
+    #[serde(rename = "One Shot Qualifying")]
     OneShotQualifying,
     Race,
     RaceTwo,
     RaceThree,
+    #[serde(rename = "Time Trial")]
     TimeTrial,
 }
 
