@@ -34,7 +34,7 @@ pub struct WeatherForecastSample {
 //     last: [WeatherForecastSample; 24],
 // }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy, Default)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy, Default)]
 #[repr(u8)]
 pub enum SessionType {
     #[default]
@@ -54,7 +54,7 @@ pub enum SessionType {
     TimeTrial,
 }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum Formula {
     F1Modern,
@@ -63,7 +63,7 @@ pub enum Formula {
     F1Generic,
 }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum SafetyCarStatus {
     NoSafetyCar,
@@ -72,28 +72,28 @@ pub enum SafetyCarStatus {
     FormationLap,
 }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum NetworkGame {
     Offline,
     Online,
 }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum ForecastAccuracy {
     Approximate,
     Perfect,
 }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum AssistToggle {
     Off,
     On,
 }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum GearboxAssist {
     Manual,
@@ -101,7 +101,7 @@ pub enum GearboxAssist {
     Automatic,
 }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy, Default)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy, Default)]
 #[repr(u8)]
 pub enum Weather {
     #[default]
@@ -111,6 +111,7 @@ pub enum Weather {
     LightRain = 3,
     HeavyRain = 4,
     Storm = 5,
+    Unknown = 6
 }
 
 use super::car_status_data::VehicleFiaFlags;
@@ -178,14 +179,14 @@ pub struct PacketSessionData {
     pub num_red_flag_periods: u8,
 }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum DynamicRacingLine {
     TwoD,
     ThreeD,
 }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum DynamicRacingLineType {
     Off,
@@ -193,7 +194,7 @@ pub enum DynamicRacingLineType {
     Full,
 }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(i8)]
 pub enum Track {
     Melbourne = 0,
