@@ -53,7 +53,7 @@ pub struct CarStatusData {
     pub network_paused: bool,             // Whether the car is paused in a network game
 }
 
-#[derive(Debug, Deserialize_repr, Serialize_repr, Clone, Copy)]
+#[derive(Debug, Deserialize_repr, Serialize, Clone, Copy)]
 #[repr(i8)]
 pub enum VehicleFiaFlags {
     InvalidUnknown = -1,
@@ -63,21 +63,45 @@ pub enum VehicleFiaFlags {
     Yellow = 3,
 }
 
-#[derive(Debug, Deserialize_repr, Serialize_repr, Clone, Copy)]
+#[derive(Debug, Deserialize_repr, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum VisualTyreCompound {
     None = 0,
+
+    #[serde(rename = "SOFT")]
     Soft = 16,
+
+    #[serde(rename = "MED")]
     Medium = 17,
+
+    #[serde(rename = "HARD")]
     Hard = 18,
+
+    #[serde(rename = "INTER")]
     Inter = 7,
+
+    #[serde(rename = "WET")]
     Wet = 8,
+
+    #[serde(rename = "DRY")]
     ClassicDry = 9,
+
+    #[serde(rename = "WET")]
     ClassicWet = 10,
+
+    #[serde(rename = "WET")]
     F219Wet = 15,
+
+    #[serde(rename = "SS")]
     F219SuperSoft = 19,
+
+    #[serde(rename = "SOFT")]
     F2Soft = 20,
+
+    #[serde(rename = "MED")]
     F2Medium = 21,
+
+    #[serde(rename = "HARD")]
     F2Hard = 22,
 }
 
