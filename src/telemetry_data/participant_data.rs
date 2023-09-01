@@ -30,7 +30,7 @@ pub struct ParticipantData {
 #[derive(Deserialize_repr, Debug, Serialize_repr, Copy, Clone)]
 #[repr(u8)]
 pub enum Driver {
-    Moron = 255,
+    Unknown = 255,
     CarlosSainz = 0,
     DaniilKvyat = 1,
     DanielRicciardo = 2,

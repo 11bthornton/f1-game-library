@@ -207,37 +207,102 @@ pub enum DynamicRacingLineType {
 #[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(i8)]
 pub enum Track {
+    #[serde(rename = "Melbourne, Australia")]
     Melbourne = 0,
+
+    #[serde(rename = "Paul Ricard, France")]
     PaulRicard = 1,
+
+    #[serde(rename = "Shanghai, China")]
     Shanghai = 2,
+
+    #[serde(rename = "Sakhir Bahrain")]
     SakhirBahrain = 3,
+
+    #[serde(rename = "Catalunya, Spain")]
     Catalunya = 4,
+
+    #[serde(rename = "Monaco")]
     Monaco = 5,
+
+    #[serde(rename = "Montreal, Canada")]
     Montreal = 6,
+
+    #[serde(rename = "Silverstone, UK")]
     Silverstone = 7,
+
+    #[serde(rename = "Hockenheim, Germany")]
     Hockenheim = 8,
+
+    #[serde(rename = "Hungaroring, Hungary")]
     Hungaroring = 9,
+
+    #[serde(rename = "Spa, Belgium")]
     Spa = 10,
+
+    #[serde(rename = "Monza, Italy")]
     Monza = 11,
+
+    #[serde(rename = "Singapore")]
     Singapore = 12,
+
+    #[serde(rename = "Suzuka, Japan")]
     Suzuka = 13,
+
+    #[serde(rename = "Abu Dhabi, UAE")]
     AbuDhabi = 14,
+
+    #[serde(rename = "Texas, USA")]
     Texas = 15,
+
+    #[serde(rename = "Brazil")]
     Brazil = 16,
+
+    #[serde(rename = "Austria")]
     Austria = 17,
+
+    #[serde(rename = "Sochi, Russia")]
     Sochi = 18,
+
+    #[serde(rename = "Mexico City, Mexico")]
     Mexico = 19,
+
+    #[serde(rename = "Baku Azerbaijan")]
     BakuAzerbaijan = 20,
+
+    #[serde(rename = "Sakhir Short, Bahrain")]
     SakhirShort = 21,
+
+    #[serde(rename = "Silverstone Short, UK")]
     SilverstoneShort = 22,
+
+    #[serde(rename = "Texas Short, USA")]
     TexasShort = 23,
+
+    #[serde(rename = "Suzuka Short, Japan")]
     SuzukaShort = 24,
+
+    #[serde(rename = "Hanoi, Vietnam")]
     Hanoi = 25,
+
+    #[serde(rename = "Zandvoort, Netherlands")]
     Zandvoort = 26,
+
+    #[serde(rename = "Imola, Italy")]
     Imola = 27,
+
+    #[serde(rename = "Portimao, Portugal")]
     Portimao = 28,
+
+    #[serde(rename = "Jeddah, Saudi Arabia")]
     Jeddah = 29,
+
+    #[serde(rename = "Miami, USA")]
     Miami = 30,
+
+    #[serde(rename = "Las Vegas, USA")]
     LasVegas = 31,
+
+    #[serde(rename = "Losail, Qatar")]
     Losail = 32,
 }

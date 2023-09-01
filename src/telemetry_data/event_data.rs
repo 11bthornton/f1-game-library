@@ -173,61 +173,170 @@ pub enum PenaltyType {
 #[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum InfringementType {
-    BlockingBySlowDriving = 0,
-    BlockingByWrongWayDriving = 1,
-    ReversingOffTheStartLine = 2,
-    BigCollision = 3,
-    SmallCollision = 4,
-    CollisionFailedToHandBackPositionSingle = 5,
-    CollisionFailedToHandBackPositionMultiple = 6,
-    CornerCuttingGainedTime = 7,
-    CornerCuttingOvertakeSingle = 8,
-    CornerCuttingOvertakeMultiple = 9,
-    CrossedPitExitLane = 10,
-    IgnoringBlueFlags = 11,
-    IgnoringYellowFlags = 12,
-    IgnoringDriveThrough = 13,
-    TooManyDriveThroughs = 14,
-    DriveThroughReminderServeWithinNLaps = 15,
-    DriveThroughReminderServeThisLap = 16,
-    PitLaneSpeeding = 17,
-    ParkedForTooLong = 18,
-    IgnoringTyreRegulations = 19,
-    TooManyPenalties = 20,
+    #[serde(rename = "Blocking by Slow Driving")]
+    SlowDrivingBlock = 0,
+
+    #[serde(rename = "Blocking by Wrong Way Driving")]
+    WrongWayBlock = 1,
+
+    #[serde(rename = "Reversing Off the Start Line")]
+    ReverseStart = 2,
+
+    #[serde(rename = "Big Collision")]
+    MajorCollision = 3,
+
+    #[serde(rename = "Small Collision")]
+    MinorCollision = 4,
+
+    #[serde(rename = "Collision: Failed to Hand Back Position (Single)")]
+    FailedReturnSingle = 5,
+
+    #[serde(rename = "Collision: Failed to Hand Back Position (Multiple)")]
+    FailedReturnMultiple = 6,
+
+    #[serde(rename = "Corner Cutting: Gained Time")]
+    TimeGainCornerCut = 7,
+
+    #[serde(rename = "Corner Cutting: Overtake (Single)")]
+    OvertakeCutSingle = 8,
+
+    #[serde(rename = "Corner Cutting: Overtake (Multiple)")]
+    OvertakeCutMultiple = 9,
+
+    #[serde(rename = "Crossed Pit Exit Lane")]
+    PitExitViolation = 10,
+
+    #[serde(rename = "Ignoring Blue Flags")]
+    IgnoredBlueFlags = 11,
+
+    #[serde(rename = "Ignoring Yellow Flags")]
+    IgnoredYellowFlags = 12,
+
+    #[serde(rename = "Ignoring Drive Through")]
+    IgnoredDriveThrough = 13,
+
+    #[serde(rename = "Too Many Drive Throughs")]
+    ExcessiveDriveThroughs = 14,
+
+    #[serde(rename = "Drive Through Reminder: Serve Within N Laps")]
+    DriveThroughReminderNLaps = 15,
+
+    #[serde(rename = "Drive Through Reminder: Serve This Lap")]
+    DriveThroughReminderThisLap = 16,
+
+    #[serde(rename = "Pit Lane Speeding")]
+    PitSpeeding = 17,
+
+    #[serde(rename = "Parked for Too Long")]
+    ExcessiveParking = 18,
+
+    #[serde(rename = "Ignoring Tyre Regulations")]
+    TyreRulesIgnored = 19,
+
+    #[serde(rename = "Too Many Penalties")]
+    ExcessivePenalties = 20,
+
+    #[serde(rename = "Multiple Warnings")]
     MultipleWarnings = 21,
-    ApproachingDisqualification = 22,
-    TyreRegulationsSelectSingle = 23,
-    TyreRegulationsSelectMultiple = 24,
-    LapInvalidatedCornerCutting = 25,
-    LapInvalidatedRunningWide = 26,
-    CornerCuttingRanWideGainedTimeMinor = 27,
-    CornerCuttingRanWideGainedTimeSignificant = 28,
-    CornerCuttingRanWideGainedTimeExtreme = 29,
-    LapInvalidatedWallRiding = 30,
-    LapInvalidatedFlashbackUsed = 31,
-    LapInvalidatedResetToTrack = 32,
-    BlockingThePitlane = 33,
+
+    #[serde(rename = "Approaching Disqualification")]
+    NearDisqualification = 22,
+
+    #[serde(rename = "Tyre Regulations: Select (Single)")]
+    SingleTyreViolation = 23,
+
+    #[serde(rename = "Tyre Regulations: Select (Multiple)")]
+    MultipleTyreViolation = 24,
+
+    #[serde(rename = "Lap Invalidated: Corner Cutting")]
+    InvalidLapCornerCut = 25,
+
+    #[serde(rename = "Lap Invalidated: Running Wide")]
+    InvalidLapRanWide = 26,
+
+    #[serde(rename = "Corner Cutting: Ran Wide, Gained Time (Minor)")]
+    MinorTimeGainRanWide = 27,
+
+    #[serde(rename = "Corner Cutting: Ran Wide, Gained Time (Significant)")]
+    SignificantTimeGainRanWide = 28,
+
+    #[serde(rename = "Corner Cutting: Ran Wide, Gained Time (Extreme)")]
+    ExtremeTimeGainRanWide = 29,
+
+    #[serde(rename = "Lap Invalidated: Wall Riding")]
+    InvalidLapWallRide = 30,
+
+    #[serde(rename = "Lap Invalidated: Flashback Used")]
+    InvalidLapFlashback = 31,
+
+    #[serde(rename = "Lap Invalidated: Reset to Track")]
+    InvalidLapReset = 32,
+
+    #[serde(rename = "Blocking the Pitlane")]
+    PitlaneBlock = 33,
+
+    #[serde(rename = "Jump Start")]
     JumpStart = 34,
-    SafetyCarToCarCollision = 35,
-    SafetyCarIllegalOvertake = 36,
-    SafetyCarExceedingAllowedPace = 37,
-    VirtualSafetyCarExceedingAllowedPace = 38,
-    FormationLapBelowAllowedSpeed = 39,
+
+    #[serde(rename = "Safety Car to Car Collision")]
+    SafetyCarCollision = 35,
+
+    #[serde(rename = "Safety Car: Illegal Overtake")]
+    SafetyCarOvertake = 36,
+
+    #[serde(rename = "Safety Car: Exceeding Allowed Pace")]
+    SafetyCarPaceExceed = 37,
+
+    #[serde(rename = "Virtual Safety Car: Exceeding Allowed Pace")]
+    VSCarPaceExceed = 38,
+
+    #[serde(rename = "Formation Lap: Below Allowed Speed")]
+    SlowFormationLap = 39,
+
+    #[serde(rename = "Formation Lap: Parking")]
     FormationLapParking = 40,
-    RetiredMechanicalFailure = 41,
-    RetiredTerminallyDamaged = 42,
-    SafetyCarFallingTooFarBack = 43,
-    BlackFlagTimer = 44,
-    UnservedStopGoPenalty = 45,
-    UnservedDriveThroughPenalty = 46,
-    EngineComponentChange = 47,
+
+    #[serde(rename = "Retired: Mechanical Failure")]
+    MechanicalRetirement = 41,
+
+    #[serde(rename = "Retired: Terminally Damaged")]
+    DamageRetirement = 42,
+
+    #[serde(rename = "Safety Car: Falling Too Far Back")]
+    SafetyCarGapLarge = 43,
+
+    #[serde(rename = "Black Flag Timer")]
+    BlackFlag = 44,
+
+    #[serde(rename = "Unserved Stop Go Penalty")]
+    UnservedStopGo = 45,
+
+    #[serde(rename = "Unserved Drive Through Penalty")]
+    UnservedDriveThrough = 46,
+
+    #[serde(rename = "Engine Component Change")]
+    EngineChange = 47,
+
+    #[serde(rename = "Gearbox Change")]
     GearboxChange = 48,
-    ParcFerméChange = 49,
-    LeagueGridPenalty = 50,
+
+    #[serde(rename = "Parc Fermé Change")]
+    ParcFerméEdit = 49,
+
+    #[serde(rename = "League Grid Penalty")]
+    LeaguePenalty = 50,
+
+    #[serde(rename = "Retry Penalty")]
     RetryPenalty = 51,
-    IllegalTimeGain = 52,
-    MandatoryPitstop = 53,
-    AttributeAssigned = 54,
+
+    #[serde(rename = "Illegal Time Gain")]
+    IllegalTime = 52,
+
+    #[serde(rename = "Mandatory Pitstop")]
+    MandatoryPit = 53,
+
+    #[serde(rename = "Attribute Assigned")]
+    Attribute = 54,
 }
 
 #[derive(Deserialize, Debug, Serialize, Clone, Copy)]

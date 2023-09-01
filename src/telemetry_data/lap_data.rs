@@ -59,8 +59,13 @@ pub struct PacketLapData {
 #[repr(u8)]
 pub enum Sector {
     #[default]
+    #[serde(rename = "Sector One")]
     SectorOne = 0,
+
+    #[serde(rename = "Sector Two")]
     SectorTwo = 1,
+
+    #[serde(rename = "Sector Three")]
     SectorThree = 2,
 }
 
@@ -68,19 +73,33 @@ pub enum Sector {
 #[repr(u8)]
 pub enum PitStatus {
     #[default]
+    #[serde(rename = "None")]
     None = 0,
+
+    #[serde(rename = "Pitting")]
     Pitting = 1,
+
+    #[serde(rename = "In Pit Area")]
     InPitArea = 2,
 }
 
 #[derive(Deserialize_repr, Debug, Default, Serialize_repr, Clone, Copy)]
 #[repr(u8)]
 pub enum DriverStatus {
+    #[serde(rename = "In Garage")]
     InGarage = 0,
+
     #[default]
+    #[serde(rename = "Flying Lap")]
     FlyingLap = 1,
+
+    #[serde(rename = "In Lap")]
     InLap = 2,
+
+    #[serde(rename = "Out Lap")]
     OutLap = 3,
+
+    #[serde(rename = "On Track")]
     OnTrack = 4,
 }
 
@@ -88,12 +107,27 @@ pub enum DriverStatus {
 #[repr(u8)]
 pub enum ResultStatus {
     #[default]
+    #[serde(rename = "Invalid")]
     Invalid = 0,
+
+    #[serde(rename = "Inactive")]
     Inactive = 1,
+
+    #[serde(rename = "Active")]
     Active = 2,
+
+    #[serde(rename = "Finished")]
     Finished = 3,
+
+    #[serde(rename = "Did Not Finish (DNF)")]
     DNF = 4,
+
+    #[serde(rename = "Disqualified (DSQ)")]
     DSQ = 5,
+
+    #[serde(rename = "Not Classified")]
     NotClassified = 6,
+
+    #[serde(rename = "Retired")]
     Retired = 7,
 }
