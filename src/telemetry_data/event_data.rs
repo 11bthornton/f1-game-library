@@ -170,7 +170,7 @@ pub enum PenaltyType {
     BlackFlagTimer = 17,
 }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum InfringementType {
     #[serde(rename = "Blocking by Slow Driving")]
