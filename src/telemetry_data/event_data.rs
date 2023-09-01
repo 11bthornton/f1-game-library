@@ -147,29 +147,46 @@ use serde_repr::{
     Serialize_repr,
 };
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum PenaltyType {
+    #[serde(rename = "Drive Through")]
     DriveThrough = 0,
+    #[serde(rename = "Stop Go")]
     StopGo = 1,
+    #[serde(rename = "Grid Penalty")]
     GridPenalty = 2,
+    #[serde(rename = "Penalty Reminder")]
     PenaltyReminder = 3,
+    #[serde(rename = "Time Penalty")]
     TimePenalty = 4,
+    #[serde(rename = "Warning")]
     Warning = 5,
+    #[serde(rename = "Disqualified")]
     Disqualified = 6,
+    #[serde(rename = "Removed From Formation Lap")]
     RemovedFromFormationLap = 7,
+    #[serde(rename = "Parked Too Long Timer")]
     ParkedTooLongTimer = 8,
+    #[serde(rename = "Tyre Regulations")]
     TyreRegulations = 9,
+    #[serde(rename = "This Lap Invalidated")]
     ThisLapInvalidated = 10,
+    #[serde(rename = "This And Next Lap Invalidated")]
     ThisAndNextLapInvalidated = 11,
+    #[serde(rename = "This Lap Invalidated Without Reason")]
     ThisLapInvalidatedWithoutReason = 12,
+    #[serde(rename = "This And Next Lap Invalidated Without Reason")]
     ThisAndNextLapInvalidatedWithoutReason = 13,
+    #[serde(rename = "This And Previous Lap Invalidated")]
     ThisAndPreviousLapInvalidated = 14,
+    #[serde(rename = "This And Previous Lap Invalidated Without Reason")]
     ThisAndPreviousLapInvalidatedWithoutReason = 15,
+    #[serde(rename = "Retired")]
     Retired = 16,
+    #[serde(rename = "Black Flag Timer")]
     BlackFlagTimer = 17,
 }
-
 #[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum InfringementType {
