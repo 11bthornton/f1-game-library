@@ -4,14 +4,14 @@ use serde::{
     Serialize,
 };
 
-#[derive(Deserialize, Debug, Serialize)]
+#[derive(Deserialize, Debug, Serialize, Copy, Clone)]
 pub struct PacketClassificationData {
     pub header: PacketHeader,
     pub num_cars: u8,
     pub classification_data: [FinalClassificationData; 22],
 }
 
-#[derive(Deserialize, Debug, Serialize)]
+#[derive(Deserialize, Debug, Serialize, Copy, Clone)]
 pub struct FinalClassificationData {
     pub position: u8,
     pub num_laps: u8,

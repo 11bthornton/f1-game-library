@@ -10,6 +10,14 @@ serde = {version = "1.0.144", features = ["derive"]}
 bincode = "1.3.3"
 serde-big-array = {version = "0.5.1"}
 serde_repr = "*"
+tokio = { version = "1", features = ["full"] }
+tokio-stream = "0.1"
+async-trait = "*"
 
 [profile.release]
 opt-level = 3
+
+[features]
+default = ["async"]
+async = []
+sync = []

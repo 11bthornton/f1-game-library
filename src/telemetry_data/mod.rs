@@ -16,7 +16,7 @@ pub mod tyre_set_data;
 
 use serde::Serialize;
 
-#[derive(Serialize, Debug)]
+#[derive(Serialize, Debug, Copy, Clone)]
 pub enum F1Data {
     Damage(car_damage_data::PacketCarDamageData),
     Setup(car_setup_data::PacketCarSetupData),
