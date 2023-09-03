@@ -19,6 +19,7 @@ use crate::telemetry_data::{
     F1Data,
 };
 use bincode::deserialize;
+
 use tokio::{
     net::UdpSocket,
     sync::mpsc::{
@@ -27,7 +28,11 @@ use tokio::{
         UnboundedSender,
     },
 };
+
 use tokio_stream::wrappers::UnboundedReceiverStream;
+
+
+
 use F1Data::{
     Classification,
     Damage,
@@ -45,6 +50,7 @@ use F1Data::{
     TyreSetData,
 };
 
+#[cfg(feature = "async")]
 macro_rules! match_and_deserialize {
 
     ($tx:expr, $ip:expr, $port:expr, $($size:expr => ($ty:ty, $enum_variant:ident $(, $alt:ty)?)),+) => {
@@ -104,6 +110,7 @@ macro_rules! match_and_deserialize {
     };
 }
 
+#[cfg(feature = "async")]
 pub fn event_loop_generator(
     ip: String,
     port: String,
@@ -133,6 +140,10 @@ pub fn event_loop_generator(
 
     Ok(UnboundedReceiverStream::new(rx))
 }
+
+
+
+
 
 #[derive(Debug)]
 pub enum DataHandlerError {
