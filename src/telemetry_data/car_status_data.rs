@@ -3,10 +3,7 @@ use serde::{
     Deserialize,
     Serialize,
 };
-use serde_repr::{
-    Deserialize_repr,
-    Serialize_repr,
-};
+use serde_repr::Deserialize_repr;
 
 #[derive(Deserialize, Debug, Serialize, Clone, Copy)]
 pub struct CarStatusData {
@@ -24,10 +21,10 @@ pub struct CarStatusData {
     pub drs_allowed: bool,                 // 0 = not allowed, 1 = allowed
     pub drs_activation_distance: u16,      /* 0 = DRS not available, non-zero - DRS will be
                                             * available */
-                                           // in [X] metres
+    // in [X] metres
     pub actual_tyre_compound: ActualTyreCompound, /* F1 Modern - 16 = C5, 17 = C4, 18 = C3, 19 =
                                                    * C2, 20 = C1 */
-                                                // 7 = inter, 8 = wet
+    // 7 = inter, 8 = wet
     // F1 Classic - 9 = dry, 10 = wet
     // F2 – 11 = super soft, 12 = soft, 13 = medium, 14 = hard
     // 15 = wet
@@ -105,7 +102,7 @@ pub enum VisualTyreCompound {
     F2Hard = 22,
 }
 
-#[derive(Debug, Deserialize_repr, Serialize_repr, Clone, Copy)]
+#[derive(Debug, Deserialize_repr, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum ActualTyreCompound {
     None = 0, // Presumably for not a player. The empty slots
@@ -132,7 +129,7 @@ pub struct PacketCarStatusData {
     pub car_status_data: [CarStatusData; 22],
 }
 
-#[derive(Debug, Deserialize_repr, Serialize_repr, Clone, Copy)]
+#[derive(Debug, Deserialize_repr, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum DeployMode {
     None,
@@ -141,14 +138,14 @@ pub enum DeployMode {
     Overtake,
 }
 
-#[derive(Debug, Deserialize_repr, Serialize_repr, Clone, Copy)]
+#[derive(Debug, Deserialize_repr, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum AntiLockBrakes {
     Off,
     On,
 }
 
-#[derive(Debug, Deserialize_repr, Serialize_repr, Clone, Copy)]
+#[derive(Debug, Deserialize_repr, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum FuelMix {
     Lean,
@@ -157,7 +154,7 @@ pub enum FuelMix {
     Max,
 }
 
-#[derive(Debug, Deserialize_repr, Serialize_repr, Clone, Copy)]
+#[derive(Debug, Deserialize_repr, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum TractionControl {
     Off,
@@ -165,7 +162,7 @@ pub enum TractionControl {
     Full,
 }
 
-#[derive(Debug, Deserialize_repr, Serialize_repr, Clone, Copy)]
+#[derive(Debug, Deserialize_repr, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum PitLimiterStatus {
     Off,

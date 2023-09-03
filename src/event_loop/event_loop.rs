@@ -1,8 +1,3 @@
-use bincode::deserialize;
-use tokio::net::UdpSocket;
-use tokio::sync::mpsc::{self, UnboundedSender, UnboundedReceiver};
-use tokio_stream::wrappers::UnboundedReceiverStream;
-
 use crate::telemetry_data::{
     car_damage_data::PacketCarDamageData,
     car_setup_data::PacketCarSetupData,
@@ -23,7 +18,16 @@ use crate::telemetry_data::{
     tyre_set_data::PacketTyreSetsData,
     F1Data,
 };
-
+use bincode::deserialize;
+use tokio::{
+    net::UdpSocket,
+    sync::mpsc::{
+        self,
+        UnboundedReceiver,
+        UnboundedSender,
+    },
+};
+use tokio_stream::wrappers::UnboundedReceiverStream;
 use F1Data::{
     Classification,
     Damage,
@@ -42,13 +46,13 @@ use F1Data::{
 };
 
 macro_rules! match_and_deserialize {
-    
+
     ($tx:expr, $ip:expr, $port:expr, $($size:expr => ($ty:ty, $enum_variant:ident $(, $alt:ty)?)),+) => {
         tokio::spawn(async move {
 
             let mut buf: Vec<u8> = vec![0; 2048];
             let socket = match UdpSocket::bind(format!("{}:{}", $ip, $port)).await {
-            
+
                 Ok(socket) => socket,
                 Err(_) => {
                     // eprintln!("Network error: {}", e);
@@ -62,15 +66,15 @@ macro_rules! match_and_deserialize {
                         match n {
                             $(
                                 $size => {
-                                    
+
                                     let decoded: Result<$ty, _> = deserialize(&buf);
-                                    
+
                                     match decoded {
                                         Ok(decoded) => {
                                             $(
                                                 let decoded: $alt = decoded.decode().unwrap();
                                             )?
-                
+
                                             $tx.send($enum_variant(decoded)).unwrap();
                                         },
                                         Err(_) => {
@@ -95,12 +99,15 @@ macro_rules! match_and_deserialize {
                     }
                 }
             }
-            
+
         });
     };
 }
 
-pub fn event_loop_generator(ip: String, port: String) -> Result<impl tokio_stream::Stream<Item = F1Data>, DataHandlerError> {
+pub fn event_loop_generator(
+    ip: String,
+    port: String,
+) -> Result<impl tokio_stream::Stream<Item = F1Data>, DataHandlerError> {
     let (tx, rx): (UnboundedSender<F1Data>, UnboundedReceiver<F1Data>) = mpsc::unbounded_channel();
 
     match_and_deserialize!(
@@ -124,9 +131,7 @@ pub fn event_loop_generator(ip: String, port: String) -> Result<impl tokio_strea
         231 => (PacketTyreSetsData, TyreSetData)
     );
 
-    Ok(
-        UnboundedReceiverStream::new(rx)
-    )
+    Ok(UnboundedReceiverStream::new(rx))
 }
 
 #[derive(Debug)]

@@ -3,10 +3,7 @@ use serde::{
     Deserialize,
     Serialize,
 };
-use serde_repr::{
-    Deserialize_repr,
-    Serialize_repr,
-};
+use serde_repr::Deserialize_repr;
 
 #[derive(Deserialize, Debug, Default, Serialize, Clone, Copy)]
 pub struct LapData {
@@ -18,8 +15,9 @@ pub struct LapData {
     pub sector2_time_minutes: u8,         // Sector 2 whole minute part
     pub delta_to_car_in_front_in_ms: u16, // Time delta to car in front in milliseconds
     pub delta_to_race_leader_in_ms: u16,  // Time delta to race leader in milliseconds
-    lap_distance: f32, /* Distance vehicle is around current lap in metres – could be negative
-                        * if line hasn’t been crossed yet */
+    lap_distance: f32,                    /* Distance vehicle is around current lap in metres –
+                                           * could be negative
+                                           * if line hasn’t been crossed yet */
     total_distance: f32, /* Total distance travelled in session in metres – could be negative if
                           * line hasn’t been crossed yet */
     safety_car_delta: f32,               // Delta in seconds for safety car
@@ -55,7 +53,7 @@ pub struct PacketLapData {
     pub m_time_trial_rival_car_idx: u8,
 }
 
-#[derive(Deserialize_repr, Debug, Default, Serialize_repr, Clone, Copy)]
+#[derive(Deserialize_repr, Debug, Default, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum Sector {
     #[default]
@@ -69,7 +67,7 @@ pub enum Sector {
     SectorThree = 2,
 }
 
-#[derive(Deserialize_repr, Debug, Default, Serialize_repr, Clone, Copy)]
+#[derive(Deserialize_repr, Debug, Default, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum PitStatus {
     #[default]
@@ -83,7 +81,7 @@ pub enum PitStatus {
     InPitArea = 2,
 }
 
-#[derive(Deserialize_repr, Debug, Default, Serialize_repr, Clone, Copy)]
+#[derive(Deserialize_repr, Debug, Default, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum DriverStatus {
     #[serde(rename = "In Garage")]
@@ -103,7 +101,7 @@ pub enum DriverStatus {
     OnTrack = 4,
 }
 
-#[derive(Deserialize_repr, Debug, Default, Serialize_repr, Clone, Copy)]
+#[derive(Deserialize_repr, Debug, Default, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum ResultStatus {
     #[default]

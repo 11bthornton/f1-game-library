@@ -46,7 +46,3 @@ pub use packet_header::PacketHeader;
 pub use participant_data::PacketParticipantData;
 pub use session_data::PacketSessionData;
 pub use session_history::PacketSessionHistoryData;
-
-macro_rules! deserialize_to {
-    ($type:ty) => {};
-}

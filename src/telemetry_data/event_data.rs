@@ -4,6 +4,7 @@ use serde::{
     Deserialize,
     Serialize,
 };
+use serde_repr::Deserialize_repr;
 use std::{
     str,
     str::Utf8Error,
@@ -141,11 +142,6 @@ pub struct Penalty {
     pub lap_number: u8,
     pub places_gained: u8,
 }
-
-use serde_repr::{
-    Deserialize_repr,
-    Serialize_repr,
-};
 
 #[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]

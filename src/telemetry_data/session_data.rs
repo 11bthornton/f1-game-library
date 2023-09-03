@@ -3,11 +3,7 @@ use serde::{
     Deserialize,
     Serialize,
 };
-use serde_repr::{
-    Deserialize_repr,
-    Serialize_repr,
-};
-
+use serde_repr::Deserialize_repr;
 #[derive(Deserialize, Debug, Serialize, Clone, Copy)]
 pub struct MarshalZone {
     pub zone_start: f32,
@@ -67,18 +63,26 @@ pub enum SessionType {
 #[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum Formula {
+    #[serde(rename = "F1 Modern")]
     F1Modern,
+    #[serde(rename = "F1 Classic")]
     F1Classic,
+    #[serde(rename = "F2")]
     FormulaTwo,
+    #[serde(rename = "F1 Generic")]
     F1Generic,
 }
 
 #[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum SafetyCarStatus {
+    #[serde(rename = "No Safety Car")]
     NoSafetyCar,
+    #[serde(rename = "Full Safety Car")]
     FullSafetyCar,
+    #[serde(rename = "Virtual Safety Car")]
     VirtualSafetyCar,
+    #[serde(rename = "Formation Lap")]
     FormationLap,
 }
 
@@ -107,6 +111,7 @@ pub enum AssistToggle {
 #[repr(u8)]
 pub enum GearboxAssist {
     Manual,
+    #[serde(rename = "Suggested Gear")]
     SuggestedGear,
     Automatic,
 }
@@ -121,7 +126,7 @@ pub enum Weather {
     LightRain = 3,
     HeavyRain = 4,
     Storm = 5,
-    Unknown = 6
+    Unknown = 6,
 }
 
 use super::car_status_data::VehicleFiaFlags;
@@ -192,7 +197,9 @@ pub struct PacketSessionData {
 #[derive(Serialize, Deserialize_repr, Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum DynamicRacingLine {
+    #[serde(rename = "2d")]
     TwoD,
+    #[serde(rename = "3d")]
     ThreeD,
 }
 
@@ -200,6 +207,7 @@ pub enum DynamicRacingLine {
 #[repr(u8)]
 pub enum DynamicRacingLineType {
     Off,
+    #[serde(rename = "Corners Only")]
     CornersOnly,
     Full,
 }

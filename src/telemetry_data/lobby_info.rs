@@ -1,21 +1,17 @@
-use crate::telemetry_data::packet_header::PacketHeader;
+use crate::telemetry_data::{
+    packet_header::PacketHeader,
+    participant_data::{
+        Nationality,
+        Team,
+    },
+};
 use serde::{
     Deserialize,
     Serialize,
 };
-use std::str;
-
-#[allow(unused_attributes)]
-#[macro_use]
 use serde_big_array::BigArray;
-use crate::telemetry_data::participant_data::{
-    Nationality,
-    Team,
-};
-use serde_repr::{
-    Deserialize_repr,
-    Serialize_repr,
-};
+use serde_repr::Deserialize_repr;
+use std::str;
 
 #[derive(Deserialize, Debug, Serialize, Clone, Copy)]
 pub struct LobbyInfoData {
@@ -39,9 +35,10 @@ pub struct PacketLobbyInfoData {
     lobby_players: [LobbyInfoData; 22],
 }
 
-#[derive(Debug, Deserialize_repr, Serialize_repr, Clone, Copy)]
+#[derive(Debug, Deserialize_repr, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum Platform {
+    #[serde(rename = "Unknown")]
     SuperUnknown = 0,
     Steam = 1,
     Playstation = 3,
@@ -50,9 +47,10 @@ pub enum Platform {
     Unknown = 255,
 }
 
-#[derive(Debug, Deserialize_repr, Serialize_repr, Clone, Copy)]
+#[derive(Debug, Deserialize_repr, Serialize, Clone, Copy)]
 #[repr(u8)]
 pub enum ReadyStatus {
+    #[serde(rename = "Not Ready")]
     NotReady,
     Ready,
     Spectating,
