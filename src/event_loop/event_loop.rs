@@ -31,8 +31,6 @@ use tokio::{
 
 use tokio_stream::wrappers::UnboundedReceiverStream;
 
-
-
 use F1Data::{
     Classification,
     Damage,
@@ -140,10 +138,6 @@ pub fn event_loop_generator(
 
     Ok(UnboundedReceiverStream::new(rx))
 }
-
-
-
-
 
 #[derive(Debug)]
 pub enum DataHandlerError {
